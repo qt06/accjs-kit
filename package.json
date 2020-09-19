@@ -1,0 +1,35 @@
+{
+  "name": "accjs-kit",
+  "version": "1.0.2",
+  "description": "accjs tools.",
+  "main": "dist/accjs-kit.js",
+  "jsnext:main": "src/acc.js",
+  "module": "src/acc.js",
+  "scripts": {
+    "build": "rollup -c && rollup -c --config:minify",
+    "bundle": "rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qt06/accjs-kit.git"
+  },
+  "keywords": [
+    "accjs",
+    "kit",
+    "jquery",
+    "dom"
+  ],
+  "author": "qt06",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qt06/accjs-kit/issues"
+  },
+  "homepage": "https://github.com/qt06/accjs-kit#readme",
+  "devDependencies": {
+    "minimist": "^1.2.5",
+    "rollup": "^2.21.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-terser": "^6.1.0"
+  }
+}

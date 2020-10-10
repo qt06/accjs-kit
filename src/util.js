@@ -8,6 +8,7 @@ t.offsetParent !== null);
 }
 
 
+/**
 function toFocus(focusSelector, op, rangeSelector) {
 let els = document.querySelectorAll(rangeSelector);
 let len = els.length;
@@ -56,6 +57,7 @@ function previousFocus(focusSelector, rangeSelector= '*') {
 toFocus(focusSelector, '-', rangeSelector);
 }
 
+
 function registerHotkeys(accesskeys) {
 accesskeys.forEach(function(a) {
 if(typeof a["accesskey"] === 'undefined') {
@@ -71,12 +73,57 @@ return false;
 });
 });
 }
+*/
+function gi(i, len, op) {
+  let n = op == '+' ? +1 : -1;
+  i = i + n;
+  if (i >= len) {
+    i = 0;
+  }
+  if (i < 0) {
+    i = len - 1;
+  }
+  return i;
+}
+
+function _toFocus(el) {
+  let tagName = el.tagName.toLowerCase();
+  let tagNames = ['div', 'p', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'form', 'img', 'nav', 'header', 'main', 'footer', 'section', 'aside'];
+  if (tagNames.includes(tagName) || (tagName == 'a' && !el.hasAttribute('href'))) {
+    if (!el.hasAttribute('tabindex')) {
+      el.setAttribute('tabindex', '-1');
+    }
+  }
+  el.focus();
+}
+
+function toFocus(focusSelector, op) {
+  let els = [...document.body.querySelectorAll('*')];
+  let len = els.length;
+  let aeIndex = Math.max(0, els.indexOf(document.activeElement));
+  let i = aeIndex == 0 ? 0 : gi(aeIndex, len, op);
+  do {
+    if (els[i].matches(focusSelector) && isVisible(els[i])) {
+      _toFocus(els[i]);
+      break;
+    }
+    i = gi(i, len, op);
+  } while ( i != aeIndex );
+}
+
+function nextFocus(selector) {
+  toFocus(selector, '+');
+}
+
+function previousFocus(selector) {
+  toFocus(selector, '-');
+}
+
 
 export {
 globalEval,
 isVisible,
 toFocus,
 nextFocus,
-previousFocus,
-registerHotkeys
+previousFocus
 }

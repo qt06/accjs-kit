@@ -1,6 +1,6 @@
 {
   "name": "accjs-kit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "accjs tools.",
   "main": "dist/accjs-kit.js",
   "jsnext:main": "src/acc.js",
